@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Link from '../Link/Link';
+import { Bars3Icon } from '@heroicons/react/24/solid'
 
 const Navber = () => {
-
+    const [open , setOpen] = useState(false)
     const routes = [
         {
           id: 1,
@@ -33,9 +35,16 @@ const Navber = () => {
 
     return (
         <nav>
+            <div onClick={()=> setOpen(!open)}>
+                <span>{open === true ? "Open" : "close"}</span>
+                 <Bars3Icon className="h-8 w-8 text-yellow-500" />
+            </div>
             <ul>
                 {
-                    routes.map(route =><li>{route.name}</li>)
+                    routes.map(route =><Link
+                    key={route.id}
+                    route={route}
+                    ></Link>)
                 }
             </ul>
         </nav>
